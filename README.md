@@ -1,14 +1,14 @@
-# Predictive Maintenance
+# Intelligent Machine Health Monitoring
 
 ## 1. Overview
 
 ---
 
-This design doc outlines the development of a web application for predictive maintenance using an AI4I 2020 Predictive Maintenance Dataset. The application will utilize machine learning models that:
+This project focuses on developing a web application for predictive maintenance utilizing the AI4I 2020 Predictive Maintenance Dataset. The application integrates machine learning models to:
 
-- Evaluate whether the equipment will fail or not based on process parameters, including air and process temperatures, rotational speed, torque, and tool wear.
+Predict whether equipment is at risk of failure based on process parameters like air and process temperature, rotational speed, torque, and tool wear.
 
-- Identifies the type of equipment failure in the event of a failure, based on the same process parameters.
+Classify the type of failure when one occurs, leveraging the same set of parameters.
 
 
 [https://github.com/praj2408/Predictive-Maintenance-System-Monitoring/assets/70437673/863a61cf-14bc-43aa-937e-823edcb4d1b2](https://github.com/user-attachments/assets/87fb60a3-43e6-4461-bad2-d56d14a1393a)
@@ -18,17 +18,19 @@ This design doc outlines the development of a web application for predictive mai
 
 ---
 
-Predictive maintenance can help companies minimize downtime, reduce repair costs, and improve operational efficiency. Developing a web application for predictive maintenance can provide users with real-time insights into equipment performance, enabling proactive maintenance, and reducing unplanned downtime.
+Predictive maintenance is crucial for industries seeking to optimize operations, minimize downtime, and reduce repair costs. By deploying an AI-driven system, users gain real-time insights into equipment performance, enabling proactive maintenance actions to prevent unexpected failures.
 
 ## 3. Success Metrics
 
 ---
 
-The success of the project will be measured based on the following metrics:
+The success of this project will be evaluated based on:
 
-- Precsion, recall, and F1 score of the machine learning models.
-- Responsiveness and ease of use of the web application.
-- Reduction in unplanned downtime and repair costs
+Model Performance: Precision, recall, and F1-score of the predictive models.
+
+User Experience: Application responsiveness and ease of use.
+
+Impact: Reduction in downtime and maintenance expenses.
 
 ## 4. Requirements & Constraints
 
@@ -36,85 +38,100 @@ The success of the project will be measured based on the following metrics:
 
 ### 4.1 Functional Requirements
 
-The web application should provide the following functionality:
+Users must be able to input process parameters and receive failure predictions.
 
-- Users can provide the process parameters to the model and receive a prediction of whether the equipment will fail or not, and the type of failure.
-- Users can view and infer the performance metrics of different machine learning models.
-- Users can visualize the data and gain insights into the behavior of the equipment.
+The application should provide insights into the model's performance metrics.
+
+Data visualization features should allow users to analyze equipment 
 
 ### 4.2 Non-functional Requirements
 
-The web application should meet the following non-functional requirements:
+The model should achieve high precision, recall, and F1-score.
 
-- The model should have high precision, recall, and F1 score.
-- The web application should be responsive and easy to use.
-- The web application should be secure and protect user data.
+The web app should be user-friendly, responsive, and secure.
 
 ### 4.3 Constraints
 
-- The application should be built using Streamlit and deployed using Docker and Huggingface spaces.
-- The cost of deployment should be minimal.
+- The system should be built using Streamlit for the frontend.
+
+Deployment will be done using Docker and Hugging Face Spaces.
+
+Cost-effective deployment is a priority.
 
 ### 4.4 Out-of-scope
 
-- Integrating with external applications or data sources.
-- Providing detailed equipment diagnostic information.
+Integration with third-party applications or external data sources.
+
+Advanced diagnostic reports beyond failure prediction.
 
 ## 5. Methodology
 
 ---
 
 ### 5.1. Problem Statement
-
-The problem is to develop a machine learning model that predicts equipment failures based on process parameters.
+The primary challenge is to develop a machine learning-based system that can reliably predict equipment failures and classify failure types based on given parameters.
 
 ### 5.2. Data
 
-The dataset consists of more than 50,000 data points stored as rows with 14 features in columns. The features include process parameters such as air and process temperatures, rotational speed, torque, and tool wear. The target variable is a binary label indicating whether the equipment failed or not.
+The dataset consists of 50,000+ records with 14 features, including operational parameters like air/process temperature, rotational speed, torque, and tool wear.
+
+The target variable is a binary indicator of failure occurrence.
 
 ### 5.3. Techniques
 
-We will utilize both a binary classification model, and a multi-class classification model to predict equipment failures, and type of equipment fauilure respectively. The following machine learning techniques will be used:
+The project will utilize:
 
-- Data preprocessing and cleaning
-- Feature engineering and selection
-- Model selection and training
-- Hyperparameter tuning
-- Model evaluation and testing
+Binary classification for failure prediction.
+
+Multi-class classification for failure type identification.
+
+Key steps in the ML pipeline include:
+
+Data preprocessing (handling missing values, feature scaling, encoding categorical features).
+
+Feature engineering and selection.
+
+Model training and hyperparameter tuning.
+
+Performance evaluation and testing.
 
 ## 6. Architecture
 
 ---
 
-The web application architecture will consist of the following components:
+The application consists of multiple components:
 
-- A frontend web application built using Streamlit
-- A machine learning model for equipment failure prediction
-- Docker containers to run the frontend, backend, and model
-- Cloud infrastructure to host the application
-- CI/CD pipeline using GitHub Actions for automated deployment
+Frontend: A Streamlit-based web interface for user interaction.
 
-The frontend will interact with the backend server through API calls to request predictions, model training, and data storage. The backend server will manage user authentication, data storage, and model training. The machine learning model will be trained and deployed using Docker containers. The application will be hosted on Huggingface sppaces. The CI/CD pipeline will be used to automate the deployment process.
+Backend: API services to handle model inference and data processing.
+
+Machine Learning Model: Responsible for failure prediction and classification.
+
+Deployment: Docker containers encapsulate the application, hosted on Hugging Face Spaces.
+
+CI/CD Pipeline: Automated workflows using GitHub Actions ensure continuous integration and deployment.
 
 ## 7. Pipeline
 
 ---
 
-The MLOps (Machine Learning Operations) pipeline project is designed to create an end-to-end workflow for developing and deploying a web application that performs data preprocessing, model training, model evaluation, and prediction. The pipeline leverages Docker containers for encapsulating code, artifacts, and both the frontend and backend components of the application. The application is deployed on a huggingface space to provide a cloud hosting solution.
+The end-to-end machine learning pipeline follows these steps:
 
-The pipeline follows the following sequence of steps:
+Data Input: Users upload datasets or enter process parameters.
 
-`Data`: The pipeline starts with the input data, which is sourced from a specified location. It can be in the form of a CSV file or any other supported format.
+Preprocessing: Data is cleaned, transformed, and prepared for model training.
 
-`Preprocessing`: The data undergoes preprocessing steps to clean, transform, and prepare it for model training. This stage handles tasks such as missing value imputation, feature scaling, and categorical variable encoding.
+Model Training & Evaluation: Multiple models are trained, tuned, and compared.
 
-`Model Training`: The preprocessed data is used to train machine learning models. The pipeline supports building multiple models, allowing for experimentation and comparison of different algorithms or hyperparameters.
+Containerization: The complete application is packaged into a Docker container.
 
-`Model Evaluation`: The trained models are evaluated using appropriate evaluation metrics to assess their performance. This stage helps in selecting the best-performing model for deployment.
+Cloud Deployment: The application is deployed on Hugging Face Spaces for accessibility.
 
-`Docker Container`: The pipeline utilizes Docker containers to package the application code, model artifacts, and both the frontend and backend components. This containerization ensures consistent deployment across different environments and simplifies the deployment process.
+User Interaction: Users access the web application to get real-time predictions.
 
-`Space`: The Docker container, along with the required dependencies, is deployed on a Huggingface Space. Huggingface provides a cloud hosting solution that allows for scalability, reliability, and easy management of the web application.
+Prediction Storage & Analysis: Predictions are logged for future evaluation and improvements.
+
+Continuous Integration & Deployment: Automated updates ensure seamless improvements and model retraining.
 
 `Web App`: The web application is accessible via a web browser, providing a user-friendly interface for interacting with the prediction functionality. Users can input new data and obtain predictions from the deployed model.
 
